@@ -116,6 +116,7 @@ $(function() {
 
             switch (OctoVersion) {
             case "1.5":
+            case "1.7":
             case "1.6":
                 _enableWebcamOvveride = self.methodOverrides['_enableWebcam_v1_5']
                 onTabChangeOverride = self.methodOverrides['onTabChange_common']
@@ -140,6 +141,13 @@ $(function() {
             default:
                 console.log("plugin_Webcam Tab: Unsupported OctoPrint version " + OctoVersion)
                 return // fail silently
+                if (OctoVersion > 1.7){
+		                  console.log("plugin_Webcam Tab: Unsupported OctoPrint version " + OctoVersion)
+                }
+		            _enableWebcamOvveride = self.methodOverrides['_enableWebcam_v1_5']
+                onTabChangeOverride = self.methodOverrides['onTabChange_common']
+                webcamElements = $("#control > #webcam_container, #control > #webcam_hls_container, #control > div:nth-child(3)")
+                hintDivEl = webcamElements[2]
                 break
             } // switch
     
